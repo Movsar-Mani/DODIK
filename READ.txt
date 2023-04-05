@@ -1,0 +1,46 @@
+Я синьёр синтаксис инвалид 
+пришёл рассказать вам как сделать программу привет мир на питоне 
+т.к знаю что читатель скорее всего тупой как я или даже хуже 
+
+начнём 
+
+section '.idata' import data readable
+  library kernel,'KERNEL32.DLL',\
+    mvscrt, 'msvcrt.dll'
+  import kernel,\
+    SetConsoleTitleA, 'SetConsoleTitleA',\
+    GetStdHandle, 'GetStdHandle',\
+    WriteConsoleA, 'WriteConsoleA',\
+    ReadConsoleA, 'ReadConsoleA',\
+    ExitProcess, 'ExitProcess'    
+  import mvscrt,\
+    printf,'printf',\
+    getch, '_getch'    
+
+импортируем библиотеки 
+
+format PE Console
+entry Start
+include 'win32a.inc'                              
+
+пишем эту фегню 
+но если хотите не пишите 
+
+и главня часть 
+
+section '.data' data readable writeable
+  HYI_NAHYI db 'Hello Nahui ... Gde Dolg',0
+  NULL = 0
+section '.code' code readable executable
+  Start:
+    push HYI_NAHYI
+    call[printf]
+    
+    call [getch]
+    
+    push NULL
+    invoke  ExitProcess,0 
+
+всё 
+теперь компилируем cargo build или cargo run 
+и смотрите результат 
